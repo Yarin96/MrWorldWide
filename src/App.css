@@ -8,6 +8,10 @@ button {
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #b3c6d2;
+.selected {
+  background-color: #aee1ff;
+}
+
+.wrong {
+  background-color: #ffaeba;
 }

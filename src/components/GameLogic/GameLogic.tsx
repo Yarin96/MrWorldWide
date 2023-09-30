@@ -1,38 +1,17 @@
 import { useState } from "react";
-import "../App.css";
+import { v4 as uuidv4 } from "uuid";
+import "./GameLogic.css";
 
 type Status = "DEFAULT" | "SELECTED" | "WRONG";
 type Option = {
   value: string;
   status: Status;
+  correspondingValue: string;
 };
 
-export default function CountryCapitalGame({
-  data,
-}: {
-  data: Record<string, string>;
-}) {
-  const randomizeData = () => {
-    return Math.random() - 0.5;
-  };
-
-  const getCountries = (data: Record<string, string>) => {
-    return Object.keys(data);
-  };
-
-  const getCapitals = (data: Record<string, string>) => {
-    return Object.values(data);
-  };
-
+export default function GameLogic({ data }: { data: Option[] }) {
   const [selected, setSelected] = useState<Option>();
-  const [options, setOptions] = useState<Option[]>(
-    [...getCountries(data), ...getCapitals(data)]
-      .sort(randomizeData)
-      .map((option) => ({
-        value: option,
-        status: "DEFAULT",
-      }))
-  );
+  const [options, setOptions] = useState<Option[]>(data);
 
   const isGameOver = options.length === 0;
 
@@ -50,9 +29,10 @@ export default function CountryCapitalGame({
         }))
       );
     } else {
-      const capital = data[option.value];
-      const selectedCapital = data[selected.value];
-      if (selected.value === capital || selectedCapital === option.value) {
+      if (
+        selected.value === option.correspondingValue ||
+        option.value === selected.correspondingValue
+      ) {
         setOptions(
           options.filter((opt) => !isPartOfPair(opt, option, selected))
         );
@@ -78,20 +58,20 @@ export default function CountryCapitalGame({
   };
 
   if (isGameOver) {
-    return "Congratulations!";
+    return <div className="container">Congratulations!</div>;
   }
 
   return (
-    <>
+    <div className="container">
       {options.map((option) => (
         <button
-          key={option.value}
+          key={uuidv4()}
           className={statusColorClass(option)}
           onClick={() => validationHandler(option)}
         >
           {option.value}
         </button>
       ))}
-    </>
+    </div>
   );
 }

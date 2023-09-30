@@ -1,0 +1,53 @@
+.instructions-container {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.hint {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hint ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.hint ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.hint ul li::before {
+  content: "\2022";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+  font-size: 14px;
+  line-height: 1.5;
+  top: 5px;
+}
